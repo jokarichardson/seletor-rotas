@@ -14,31 +14,31 @@ import org.springframework.util.CollectionUtils;
 
 import com.richardson.seletorrotas.exception.SeletorRotasGenericException;
 import com.richardson.seletorrotas.model.Rota;
-import com.richardson.seletorrotas.support.MessageUtils;
 
 @Component
 public class SeletorRotas {
 
 	private static final String SEPARADOR_ROTAS = " - ";
 
-	private List<Rota> rotas;
-
-	private MessageUtils messageUtils;
+	public List<Rota> rotas;
 
 	private Map<String, Map<String, Integer>> mapaRotas;
 	private Map<Integer, String> rotasEncontradas = new HashMap<>();
 	private Integer custo = Integer.valueOf(0);
 	private StringBuilder sbRota = new StringBuilder();
 
+	public SeletorRotas() {
+
+	}
+
 	@Autowired
-	public SeletorRotas(List<Rota> rotas, MessageUtils messageUtils) {
+	public SeletorRotas(List<Rota> rotas) {
 		this.rotas = rotas;
-		this.messageUtils = messageUtils;
 	}
 
 	public List<Rota> recuperarRotas() {
 		if (CollectionUtils.isEmpty(rotas)) {
-			throw new SeletorRotasGenericException(this.messageUtils.get("msg.empty.route.list"));
+			throw new SeletorRotasGenericException("Nao ha rotas cadastradas.");
 		}
 
 		return this.rotas;
@@ -50,12 +50,12 @@ public class SeletorRotas {
 
 	public String recuperarMelhorRota(String origem, String destino) {
 		if (CollectionUtils.isEmpty(rotas)) {
-			throw new SeletorRotasGenericException(this.messageUtils.get("msg.empty.route.list"));
+			throw new SeletorRotasGenericException("Nao ha rotas cadastradas.");
 		}
 
 		this.montarMapaRotas();
-		this.avaliarOrigem(origem);
-		this.caminharMapa(origem, destino);
+		this.avaliarOrigem(origem.toUpperCase());
+		this.caminharMapa(origem.toUpperCase(), destino.toUpperCase());
 		this.ordenarRotasEncontradas();
 
 		String retorno;
@@ -65,7 +65,7 @@ public class SeletorRotas {
 			retorno = this.rotasEncontradas.entrySet().iterator().next().getValue();
 			this.rotasEncontradas.clear();
 		} else
-			throw new SeletorRotasGenericException(this.messageUtils.get("msg.route.not.found"));
+			throw new SeletorRotasGenericException("Nao ha rotas entre origem e destino informados.");
 
 		return retorno;
 	}
@@ -76,7 +76,7 @@ public class SeletorRotas {
 		this.mapaRotas = new HashMap<String, Map<String, Integer>>();
 
 		this.rotas.forEach(rota -> {
-			origens.add(rota.getOrigem());
+			origens.add(rota.getOrigem().toUpperCase());
 		});
 
 		origens.forEach(o -> {
@@ -86,7 +86,7 @@ public class SeletorRotas {
 					.collect(Collectors.toList());
 
 			destinosPorOrigem.forEach(d -> {
-				destinos.put(d.getDestino(), d.getCusto());
+				destinos.put(d.getDestino().toUpperCase(), d.getCusto());
 			});
 
 			this.mapaRotas.put(o, destinos);
@@ -120,7 +120,7 @@ public class SeletorRotas {
 
 	private void avaliarOrigem(String origem) {
 		if (!this.mapaRotas.containsKey(origem))
-			throw new SeletorRotasGenericException(this.messageUtils.get("msg.origin.not.found"));
+			throw new SeletorRotasGenericException("Nao ha rotas com a origem informada.");
 	}
 
 	private void ordenarRotasEncontradas() {

@@ -23,6 +23,23 @@ Para uma implementação Java do mesmo, acesse [https://www.baeldung.com/java-di
 * Console;
 * Arquivos CSV
 
+## Formato Arquivo CSV
+
+Para carregar a aplicação com suas rotas, gere um arquivo CSV (comma-separated-values) contendo a estrutura "ORIGEM, DESTINO e CUSTO", conforme abaixo:
+
+```
+GRU,BRC,10
+BRC,SCL,5
+GRU,CDG,75
+GRU,SCL,20
+GRU,ORL,56
+ORL,CDG,8
+SCL,ORL,20
+BRC,CDG,35
+```
+
+Os dados de local e nome do arquivo serão utilizados para executar a aplicação, no lugar do parâmetro "local_e_nome_arquivo_de_rotas".
+
 ## Execução Local - ConsoleApplication
 
 * Utilizando um terminal (Command Prompt do Windows, Git Bash ou terminal do Linux), acessar o diretório raiz da aplicação (seletor-rotas);
@@ -31,22 +48,9 @@ Para uma implementação Java do mesmo, acesse [https://www.baeldung.com/java-di
 
   * Digitar o comando:
     ```
-    mvn spring-boot:run
+    mvn spring-boot:run -Dspring-boot.run.arguments="local_e_nome_arquivo_de_rotas"
     ```
-  
-  * Acessar http://localhost:8080 no navegador de preferência;
-  * Será apresentado o Swagger da aplicação
-
-* **Execução via jar:**
-
-  * Realizar o build do projeto com sua ferramenta preferencial (para Maven, comando mvn install);
-  * Digitar o comando:
-    ```
-    java -jar target/seletor-rotas-1.0.0-SNAPSHOT.jar
-    ```
-
-  * Acessar http://localhost:8080 no navegador de preferência;
-  * Será apresentado o Swagger da aplicação
+    * Exemplo: mvn spring-boot:run -Dspring-boot.run.arguments="C:\input-routes.csv"
 
 ## Execução Local - WebApplication
 
@@ -56,20 +60,18 @@ Para uma implementação Java do mesmo, acesse [https://www.baeldung.com/java-di
 
   * Digitar o comando:
     ```
-    mvn spring-boot:run
-    ```
-
-* **Execução via jar:**
-
-  * Realizar o build do projeto com sua ferramenta preferencial (para Maven, comando mvn install);
-  * Digitar o comando:
-    ```
-    java -jar target/seletor-rotas-1.0.0-SNAPSHOT.jar
-    ```
+    mvn spring-boot:run -Dspring-boot.run.arguments="local_e_nome_arquivo_de_rotas, web"
+    ``` 
+    * **web** acima é a palavra "web", indicada para iniciar a execução da interface REST.
+    * Exemplo: mvn spring-boot:run -Dspring-boot.run.arguments="C:\input-routes.csv, web"
 
 ## Utilização ConsoleApplication:
 
-
+* Será apresentada a mensagem: **Por favor, informe a rota desejada (Ex.: ORI-DES):**
+* Digite uma rota no formato ORI-DES, onde ORI = origem e DES = destino. Ex: GRU-CDG
+* O sistema calculará a melhor rota e exibirá a resposta: **Melhor Rota: GRU - BRC - SCL - ORL - CDG**
+* Para nova consulta, informe uma nova rota ORI-DES
+* Para encerrar a aplicação, informe **SAIR** 
 
 ## Utilização WebApplication - Operações REST
 
@@ -186,29 +188,6 @@ Para uma implementação Java do mesmo, acesse [https://www.baeldung.com/java-di
 ## Execução em Nuvem
 
 * As operações REST podem ser acessadas pela URL [https://seletor-rotas.herokuapp.com/](https://seletor-rotas.herokuapp.com/)
-
-## Execução Local
-
-* Utilizando um terminal (Command Prompt do Windows, Git Bash ou terminal do Linux), acessar o diretório raiz da aplicação (seletor-rotas);
-
-* **Maven:**
-
-  * Digitar o comando:
-    ```
-    mvn spring-boot:run
-    ```
-  
-  * As operações REST estarão disponíveis em http://localhost:8080;
-
-* **Execução via jar:**
-
-  * Realizar o build do projeto com sua ferramenta preferencial (para Maven, comando mvn install);
-  * Digitar o comando:
-    ```
-    java -jar target/seletor-rotas-1.0.0-SNAPSHOT.jar
-    ```
-
-  * As operações REST estarão disponíveis em http://localhost:8080;
   
 ## Testes Unitários e Cobertura
 

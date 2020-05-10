@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,7 +18,6 @@ import com.richardson.seletorrotas.config.RotasBeanTestConfiguration;
 import com.richardson.seletorrotas.exception.SeletorRotasGenericException;
 import com.richardson.seletorrotas.mocks.RotaMock;
 import com.richardson.seletorrotas.model.Rota;
-import com.richardson.seletorrotas.support.MessageUtils;
 
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,12 +29,9 @@ public class SeletorRotasTest {
 	@Autowired
 	private List<Rota> rotas;
 
-	@Mock
-	private MessageUtils messageUtils;
-
 	@Before
 	public void setUp() {
-		this.seletorRotas = new SeletorRotas(rotas, this.messageUtils);
+		this.seletorRotas = new SeletorRotas(rotas);
 	}
 
 	@Test
@@ -48,7 +43,7 @@ public class SeletorRotasTest {
 
 	@Test(expected = SeletorRotasGenericException.class)
 	public void deveLancarExcecaoAoRetornarRotasCadastradas() {
-		this.seletorRotas = new SeletorRotas(null, this.messageUtils);
+		this.seletorRotas = new SeletorRotas(null);
 		this.seletorRotas.recuperarRotas();
 	}
 
@@ -74,7 +69,7 @@ public class SeletorRotasTest {
 
 	@Test(expected = SeletorRotasGenericException.class)
 	public void deveLancarExcecaoAoRecuperarAMelhorRotaPorNaoHaveremRotasCadastradas() {
-		this.seletorRotas = new SeletorRotas(null, this.messageUtils);
+		this.seletorRotas = new SeletorRotas(null);
 		this.seletorRotas.recuperarMelhorRota("BRC", "CDG");
 	}
 

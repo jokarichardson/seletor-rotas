@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import com.richardson.seletorrotas.model.Rota;
 
 @Configuration
-public class RotasBeanConfiguration {	
+public class RotasBeanConfiguration {
 	@Bean
 	public List<Rota> rotas() {
-		
+
 		List<Rota> rotas = new ArrayList<>();
 		rotas.add(new Rota("GRU", "BRC", 10));
 		rotas.add(new Rota("BRC", "SCL", 5));
@@ -22,7 +22,7 @@ public class RotasBeanConfiguration {
 		rotas.add(new Rota("ORL", "CDG", 8));
 		rotas.add(new Rota("SCL", "ORL", 20));
 		rotas.add(new Rota("BRC", "CDG", 35));
-		
+
 		return rotas;
 	}
 }
