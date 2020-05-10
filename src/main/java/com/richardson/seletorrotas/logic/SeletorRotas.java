@@ -21,16 +21,20 @@ public class SeletorRotas {
 
 	private static final String SEPARADOR_ROTAS = " - ";
 
-	@Autowired
 	private List<Rota> rotas;
 
-	@Autowired
 	private MessageUtils messageUtils;
 
 	private Map<String, Map<String, Integer>> mapaRotas;
 	private Map<Integer, String> rotasEncontradas = new HashMap<>();
 	private Integer custo = Integer.valueOf(0);
 	private StringBuilder sbRota = new StringBuilder();
+
+	@Autowired
+	public SeletorRotas(List<Rota> rotas, MessageUtils messageUtils) {
+		this.rotas = rotas;
+		this.messageUtils = messageUtils;
+	}
 
 	public List<Rota> recuperarRotas() {
 		if (CollectionUtils.isEmpty(rotas)) {
@@ -44,7 +48,7 @@ public class SeletorRotas {
 		this.rotas.add(rota);
 	}
 
-	public String recuperarRotas(String origem, String destino) {
+	public String recuperarMelhorRota(String origem, String destino) {
 		if (CollectionUtils.isEmpty(rotas)) {
 			throw new SeletorRotasGenericException(this.messageUtils.get("msg.empty.route.list"));
 		}
@@ -72,17 +76,17 @@ public class SeletorRotas {
 		this.mapaRotas = new HashMap<String, Map<String, Integer>>();
 
 		this.rotas.forEach(rota -> {
-			origens.add(rota.getAeroportoOrigem());
+			origens.add(rota.getOrigem());
 		});
 
 		origens.forEach(o -> {
 			Map<String, Integer> destinos = new HashMap<>();
 
-			List<Rota> destinosPorOrigem = this.rotas.stream().filter(r -> r.getAeroportoOrigem().equalsIgnoreCase(o))
+			List<Rota> destinosPorOrigem = this.rotas.stream().filter(r -> r.getOrigem().equalsIgnoreCase(o))
 					.collect(Collectors.toList());
 
 			destinosPorOrigem.forEach(d -> {
-				destinos.put(d.getAeroportoDestino(), d.getCusto());
+				destinos.put(d.getDestino(), d.getCusto());
 			});
 
 			this.mapaRotas.put(o, destinos);

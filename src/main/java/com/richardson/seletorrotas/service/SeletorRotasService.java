@@ -18,7 +18,7 @@ public class SeletorRotasService {
 	}
 
 	public String recuperarMelhorRota(String origem, String destino) {
-		return this.seletorRotas.recuperarRotas(origem, destino);
+		return this.seletorRotas.recuperarMelhorRota(origem, destino);
 	}
 
 	public void registrarRota(Rota rota) {

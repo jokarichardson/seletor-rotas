@@ -9,12 +9,12 @@ import javax.validation.constraints.Size;
 public class Rota {
 
 	@NotNull
-	@Size(max = 3, min = 3, message = "Aeroporto Origem deve ser informado e ter 3 caracteres. Ex: GRU")
-	private String aeroportoOrigem;
+	@Size(max = 3, min = 3, message = "Origem deve ser informado e ter 3 caracteres. Ex: GRU")
+	private String origem;
 
 	@NotNull
-	@Size(max = 3, min = 3, message = "Aeroporto Destino deve ser informado e ter 3 caracteres. Ex: GRU")
-	private String aeroportoDestino;
+	@Size(max = 3, min = 3, message = "Destino deve ser informado e ter 3 caracteres. Ex: GRU")
+	private String destino;
 
 	@NotNull
 	@Min(value = 1, message = "Custo da rota deve ser superior a zero")
@@ -24,27 +24,27 @@ public class Rota {
 		super();
 	}
 
-	public Rota(String aeroportoOrigem, String aerportoDestino, Integer custo) {
+	public Rota(String origem, String destino, Integer custo) {
 		super();
-		this.aeroportoOrigem = aeroportoOrigem;
-		this.aeroportoDestino = aerportoDestino;
+		this.origem = origem;
+		this.destino = destino;
 		this.custo = custo;
 	}
 
-	public String getAeroportoOrigem() {
-		return aeroportoOrigem;
+	public String getOrigem() {
+		return origem;
 	}
 
-	public void setAeroportoOrigem(String aeroportoOrigem) {
-		this.aeroportoOrigem = aeroportoOrigem;
+	public void setOrigem(String origem) {
+		this.origem = origem;
 	}
 
-	public String getAeroportoDestino() {
-		return aeroportoDestino;
+	public String getDestino() {
+		return destino;
 	}
 
-	public void setAeroportoDestino(String aeroportoDestino) {
-		this.aeroportoDestino = aeroportoDestino;
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
 
 	public Integer getCusto() {
@@ -57,7 +57,7 @@ public class Rota {
 
 	@Override
 	public String toString() {
-		return MessageFormat.format("'{' aeroportoOrigem: {0}, aeroportoDestino: {1}, custo: {2}'}'",
-				this.aeroportoOrigem, this.aeroportoDestino, this.custo);
+		return MessageFormat.format("'{' origem: {0}, destino: {1}, custo: {2}'}'", this.origem, this.destino,
+				this.custo);
 	}
 }
