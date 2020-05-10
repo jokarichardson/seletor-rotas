@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.richardson.seletorrotas.logic.SeletorRotas;
 import com.richardson.seletorrotas.mocks.RotaMock;
-import com.richardson.seletorrotas.model.dto.Rota;
+import com.richardson.seletorrotas.model.Rota;
 
 @RunWith(SpringRunner.class)
 public class SeletorRotasServiceTest {

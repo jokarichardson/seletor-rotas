@@ -1,4 +1,4 @@
-package com.richardson.seletorrotas.model.dto;
+package com.richardson.seletorrotas.model;
 
 import java.text.MessageFormat;
 
@@ -6,6 +6,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({ "origem", "destino", "custo" })
 public class Rota {
 
 	@NotNull

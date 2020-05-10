@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import com.richardson.seletorrotas.exception.SeletorRotasGenericException;
-import com.richardson.seletorrotas.model.dto.Rota;
+import com.richardson.seletorrotas.model.Rota;
 import com.richardson.seletorrotas.support.MessageUtils;
 
 @Component

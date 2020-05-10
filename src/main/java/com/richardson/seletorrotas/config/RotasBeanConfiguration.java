@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.richardson.seletorrotas.model.dto.Rota;
+import com.richardson.seletorrotas.model.Rota;
 
 @Configuration
 public class RotasBeanConfiguration {	

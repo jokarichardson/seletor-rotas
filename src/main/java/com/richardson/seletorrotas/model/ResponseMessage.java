@@ -1,4 +1,4 @@
-package com.richardson.seletorrotas.model.dto;
+package com.richardson.seletorrotas.model;
 
 import java.util.Date;
 

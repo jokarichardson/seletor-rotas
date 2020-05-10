@@ -3,7 +3,7 @@ package com.richardson.seletorrotas.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.richardson.seletorrotas.model.dto.Rota;
+import com.richardson.seletorrotas.model.Rota;
 
 public class RotaMock {
 

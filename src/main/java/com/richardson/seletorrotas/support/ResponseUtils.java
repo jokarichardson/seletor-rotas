@@ -2,7 +2,7 @@ package com.richardson.seletorrotas.support;
 
 import java.util.Date;
 
-import com.richardson.seletorrotas.model.dto.ResponseMessage;
+import com.richardson.seletorrotas.model.ResponseMessage;
 
 public class ResponseUtils {
 

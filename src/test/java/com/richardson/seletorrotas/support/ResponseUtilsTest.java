@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.richardson.seletorrotas.model.dto.ResponseMessage;
+import com.richardson.seletorrotas.model.ResponseMessage;
 
 @RunWith(SpringRunner.class)
 public class ResponseUtilsTest {

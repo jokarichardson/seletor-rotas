@@ -6,7 +6,7 @@
 
 Essa aplicação tem o intuito de buscar a rota mais barata, entre dois pontos, independentemente da quantidade de pontos intermediários.
 
-O problema gerador dessa solução aduz que um viajante deseja ir de uma origem a um destino, pagando o menor valor de passagens, não importando a quantidade de escalas que venha a passar.
+O problema gerador dessa solução aduz que um viajante deseja ir de uma origem a um destino, pagando o menor valor possível, não importando a quantidade de escalas que venha a passar.
 
 Trata-se de uma abordagem pessoal do famoso algoritmo criado por Edsger Djisktra, em 1956 (publicado em 1959), utilizando-se somente de Listas e Mapas Java.
 

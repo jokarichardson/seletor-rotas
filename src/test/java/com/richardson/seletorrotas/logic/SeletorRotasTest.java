@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.richardson.seletorrotas.config.RotasBeanTestConfiguration;
 import com.richardson.seletorrotas.exception.SeletorRotasGenericException;
 import com.richardson.seletorrotas.mocks.RotaMock;
-import com.richardson.seletorrotas.model.dto.Rota;
+import com.richardson.seletorrotas.model.Rota;
 import com.richardson.seletorrotas.support.MessageUtils;
 
 @ActiveProfiles("test")
