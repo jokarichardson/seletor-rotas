@@ -190,6 +190,7 @@ Os dados de local e nome do arquivo serão utilizados para executar a aplicaçã
 ## Execução em Nuvem
 
 * As operações REST podem ser acessadas pela URL [https://seletor-rotas.herokuapp.com/](https://seletor-rotas.herokuapp.com/)
+* Somente a operação para inclusão de nova rota não funcionará a contento devido à forma como essa nuvem atua.
   
 ## Testes Unitários e Cobertura
 
