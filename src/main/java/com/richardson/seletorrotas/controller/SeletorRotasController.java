@@ -1,5 +1,7 @@
 package com.richardson.seletorrotas.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
@@ -64,11 +66,11 @@ public class SeletorRotasController {
 	}
 
 	@PostMapping(value = "/rotas", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> registrarRota(@RequestBody @Valid Rota rota) {
-		log.info("registrarRota({})", rota.toString());
+	public ResponseEntity<Object> registrarRota(@RequestBody @Valid List<Rota> rotaList) {
+		log.info("registrarRota({})", rotaList.toString());
 
 		try {
-			this.seletorRotasService.registrarRota(rota);
+			this.seletorRotasService.registrarRotas(rotaList);
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception ex) {
 			log.error("Não foi possível atender a requisição", ex);

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.security.CodeSource;
 import java.util.List;
 
 import org.junit.Before;
@@ -14,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.richardson.seletorrotas.SeletorRotasStarterApplicationTest;
 import com.richardson.seletorrotas.config.RotasBeanTestConfiguration;
 import com.richardson.seletorrotas.exception.SeletorRotasGenericException;
 import com.richardson.seletorrotas.mocks.RotaMock;
@@ -30,8 +32,16 @@ public class SeletorRotasTest {
 	private List<Rota> rotas;
 
 	@Before
-	public void setUp() {
-		this.seletorRotas = new SeletorRotas(rotas);
+	public void setUp() throws Exception {
+		CodeSource codeSource = SeletorRotasStarterApplicationTest.class.getProtectionDomain().getCodeSource();
+		this.seletorRotas = new SeletorRotas(rotas,
+				codeSource.getLocation().toURI().getPath().concat("/csv/input-routes.csv"));
+	}
+
+	@Test
+	public void deveInstanciarViaDefaultConstructor() {
+		SeletorRotas s = new SeletorRotas();
+		assertNotNull(s);
 	}
 
 	@Test
@@ -43,18 +53,18 @@ public class SeletorRotasTest {
 
 	@Test(expected = SeletorRotasGenericException.class)
 	public void deveLancarExcecaoAoRetornarRotasCadastradas() {
-		this.seletorRotas = new SeletorRotas(null);
+		this.seletorRotas = new SeletorRotas(null, null);
 		this.seletorRotas.recuperarRotas();
 	}
 
 	@Test
 	public void deveRegistrarRota() {
-		Rota rota = RotaMock.criarRota();
-		int totalRotas = this.rotas.size() + 1;
+		List<Rota> rotas = RotaMock.criarRotaList();
+		this.rotas.clear();
 
-		this.seletorRotas.registrarRota(rota);
+		this.seletorRotas.registrarRotas(rotas);
 
-		assertEquals(totalRotas, this.rotas.size());
+		assertEquals(rotas.size(), this.rotas.size());
 	}
 
 	@Test
@@ -69,7 +79,7 @@ public class SeletorRotasTest {
 
 	@Test(expected = SeletorRotasGenericException.class)
 	public void deveLancarExcecaoAoRecuperarAMelhorRotaPorNaoHaveremRotasCadastradas() {
-		this.seletorRotas = new SeletorRotas(null);
+		this.seletorRotas = new SeletorRotas(null, null);
 		this.seletorRotas.recuperarMelhorRota("BRC", "CDG");
 	}
 

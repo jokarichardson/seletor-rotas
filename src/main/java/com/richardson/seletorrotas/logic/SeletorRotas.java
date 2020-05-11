@@ -14,12 +14,14 @@ import org.springframework.util.CollectionUtils;
 
 import com.richardson.seletorrotas.exception.SeletorRotasGenericException;
 import com.richardson.seletorrotas.model.Rota;
+import com.richardson.seletorrotas.support.RotaCSVFileHelper;
 
 @Component
 public class SeletorRotas {
 
 	private static final String SEPARADOR_ROTAS = " - ";
 
+	public String arquivoRotas;
 	public List<Rota> rotas;
 
 	private Map<String, Map<String, Integer>> mapaRotas;
@@ -32,8 +34,9 @@ public class SeletorRotas {
 	}
 
 	@Autowired
-	public SeletorRotas(List<Rota> rotas) {
+	public SeletorRotas(List<Rota> rotas, String arquivoRotas) {
 		this.rotas = rotas;
+		this.arquivoRotas = arquivoRotas;
 	}
 
 	public List<Rota> recuperarRotas() {
@@ -44,8 +47,9 @@ public class SeletorRotas {
 		return this.rotas;
 	}
 
-	public void registrarRota(Rota rota) {
-		this.rotas.add(rota);
+	public void registrarRotas(List<Rota> rotas) {
+		rotas.forEach(rota -> this.rotas.add(rota));
+		RotaCSVFileHelper.gravarArquivo(this.arquivoRotas, rotas);
 	}
 
 	public String recuperarMelhorRota(String origem, String destino) {

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.stereotype.Component;
 
 import com.richardson.seletorrotas.logic.SeletorRotas;
-import com.richardson.seletorrotas.support.RotaCSVReader;
+import com.richardson.seletorrotas.support.RotaCSVFileHelper;
 
 @Component
 @ConditionalOnWebApplication
@@ -18,9 +18,8 @@ public class WebApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		if (args.length > 0) {
-			this.seletorRotas.rotas = RotaCSVReader.lerArquivo(args[0]);
+			this.seletorRotas.rotas = RotaCSVFileHelper.lerArquivo(args[0]);
+			this.seletorRotas.arquivoRotas = args[0];
 		}
-
 	}
-
 }

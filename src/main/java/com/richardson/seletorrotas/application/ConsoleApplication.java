@@ -8,7 +8,7 @@ import org.springframework.util.ObjectUtils;
 
 import com.richardson.seletorrotas.exception.SeletorRotasGenericException;
 import com.richardson.seletorrotas.logic.SeletorRotas;
-import com.richardson.seletorrotas.support.RotaCSVReader;
+import com.richardson.seletorrotas.support.RotaCSVFileHelper;
 
 @ConditionalOnNotWebApplication
 public class ConsoleApplication implements CommandLineRunner {
@@ -52,7 +52,7 @@ public class ConsoleApplication implements CommandLineRunner {
 	}
 
 	private void alimentarRotas(String arquivoRotas) {
-		this.seletorRotas.rotas = RotaCSVReader.lerArquivo(arquivoRotas);
+		this.seletorRotas.rotas = RotaCSVFileHelper.lerArquivo(arquivoRotas);
 	}
 
 	private Boolean validarEntrada(String entrada) {

@@ -1,7 +1,7 @@
 package com.richardson.seletorrotas.service;
 
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -51,13 +51,13 @@ public class SeletorRotasServiceTest {
 
 	@Test
 	public void deveRegistrarRota() {
-		Rota rota = RotaMock.criarRota();
+		List<Rota> rotaList = RotaMock.criarRotaList();
 
-		doNothing().when(this.seletorRotas).registrarRota(any());
+		doNothing().when(this.seletorRotas).registrarRotas(anyList());
 
-		this.seletorRotasService.registrarRota(rota);
+		this.seletorRotasService.registrarRotas(rotaList);
 
-		verify(this.seletorRotas, times(1)).registrarRota(any());
+		verify(this.seletorRotas, times(1)).registrarRotas(anyList());
 	}
 
 }

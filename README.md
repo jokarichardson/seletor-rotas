@@ -154,7 +154,7 @@ Os dados de local e nome do arquivo serão utilizados para executar a aplicaçã
 
 * **Incluir uma Rota:**
 
-  Essa operação realiza a persistência de uma nova rota na lista de rotas em memória.
+  Essa operação realiza a persistência de uma nova rota na lista de rotas em memória e no arquivo de entrada informado quando do início da aplicação.
 
   * **Endpoint:** /seletorrotas/rotas
   * **Método:** POST
@@ -173,6 +173,8 @@ Os dados de local e nome do arquivo serão utilizados para executar a aplicaçã
     -d "{ \"origem\": \"CDG\", \"destino\": \"GRU\", \"custo\": 50 }"
     ```
   * **Response: HttpStatus 201 - CREATED**
+  
+  * O arquivo será atualizado com a(s) nova(s) rota(s).
 
 ## Modelo de Dados:
 

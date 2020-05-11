@@ -21,7 +21,7 @@ public class SeletorRotasService {
 		return this.seletorRotas.recuperarMelhorRota(origem, destino);
 	}
 
-	public void registrarRota(Rota rota) {
-		this.seletorRotas.registrarRota(rota);
+	public void registrarRotas(List<Rota> rotaList) {
+		this.seletorRotas.registrarRotas(rotaList);
 	}
 }

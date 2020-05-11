@@ -30,8 +30,6 @@
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}\target\jacoco.exec</sonar.jacoco.reportPath>
-		<sonar.coverage.exclusions>**/controller/**, **/config/**,
-			**/model/**, **/exception/**, **/SeletorRotasStarterApplication.java</sonar.coverage.exclusions>
 	</properties>
 
 	<dependencies>
@@ -101,6 +99,7 @@
 						<exclude>**/health/**</exclude>
 						<exclude>**/config/**</exclude>
 						<exclude>**/controller/**</exclude>
+						<exclude>**/application/ConsoleApplication**</exclude>
 					</excludes>
 				</configuration>
 				<executions>

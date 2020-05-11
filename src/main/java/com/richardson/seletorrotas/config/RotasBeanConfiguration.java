@@ -25,4 +25,9 @@ public class RotasBeanConfiguration {
 
 		return rotas;
 	}
+
+	@Bean
+	public String arquivoRotas() {
+		return new String();
+	}
 }
