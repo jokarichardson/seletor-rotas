@@ -26,8 +26,8 @@ public class SeletorRotas {
 
 	private Map<String, Map<String, Integer>> mapaRotas;
 	private Map<Integer, String> rotasEncontradas = new HashMap<>();
-	private Integer custo = Integer.valueOf(0);
-	private StringBuilder sbRota = new StringBuilder();
+	private Integer custo = 0;
+	private final StringBuilder sbRota = new StringBuilder();
 
 	public SeletorRotas() {
 
@@ -48,7 +48,7 @@ public class SeletorRotas {
 	}
 
 	public void registrarRotas(List<Rota> rotas) {
-		rotas.forEach(rota -> this.rotas.add(rota));
+		this.rotas.addAll(rotas);
 		RotaCSVFileHelper.gravarArquivo(this.arquivoRotas, rotas);
 	}
 
@@ -77,7 +77,7 @@ public class SeletorRotas {
 	private void montarMapaRotas() {
 		Set<String> origens = new HashSet<>();
 
-		this.mapaRotas = new HashMap<String, Map<String, Integer>>();
+		this.mapaRotas = new HashMap<>();
 
 		this.rotas.forEach(rota -> {
 			origens.add(rota.getOrigem().toUpperCase());
@@ -103,7 +103,7 @@ public class SeletorRotas {
 		if (!CollectionUtils.isEmpty(destinos)) {
 			this.sbRota.append(origem.concat(SEPARADOR_ROTAS));
 		} else {
-			this.custo = Integer.valueOf(0);
+			this.custo = 0;
 			return;
 		}
 
@@ -119,7 +119,7 @@ public class SeletorRotas {
 		}
 
 		this.sbRota.delete(6, this.sbRota.length());
-		this.custo = Integer.valueOf(0);
+		this.custo = 0;
 	}
 
 	private void avaliarOrigem(String origem) {

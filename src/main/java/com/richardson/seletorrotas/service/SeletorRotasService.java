@@ -13,7 +13,10 @@ public class SeletorRotasService {
 	@Autowired
 	private SeletorRotas seletorRotas;
 
+	private boolean qqrBoolean;
+
 	public List<Rota> recuperarRotas() {
+		this.qqrBoolean = true;
 		return this.seletorRotas.recuperarRotas();
 	}
 

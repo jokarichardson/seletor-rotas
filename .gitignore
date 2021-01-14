@@ -3,3 +3,8 @@
 .project
 .classpath
 .git/
+
+.idea
+*.iws
+*.iml
+*.ipr
